@@ -7,14 +7,19 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 if ([string]::IsNullOrWhiteSpace($GridImagesPath)) {
-    $command = Get-Command 'grid-images.exe' -CommandType Application -ErrorAction SilentlyContinue
-    if ($null -eq $command) {
+    $commands = @(Get-Command 'grid-images.exe' -CommandType Application -ErrorAction SilentlyContinue)
+    if ($commands.Count -eq 0) {
         throw 'grid-images.exe was not found. Install it first or specify -GridImagesPath.'
     }
-    $GridImagesPath = $command.Source
+    # mise can expose both its installed binary and its shim. Get-Command may
+    # return both, so use the first one according to PowerShell's lookup order.
+    $GridImagesPath = $commands[0].Source
 }
 
 $GridImagesPath = (Resolve-Path -LiteralPath $GridImagesPath).Path
+if (-not (Test-Path -LiteralPath $GridImagesPath -PathType Leaf)) {
+    throw "grid-images executable is not a file: $GridImagesPath"
+}
 $sourceScript = Join-Path $PSScriptRoot 'SendTo-GridImages.ps1'
 $installDirectory = Join-Path $env:LOCALAPPDATA 'grid-images'
 $installedScript = Join-Path $installDirectory 'SendTo-GridImages.ps1'
