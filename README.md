@@ -44,7 +44,7 @@ powershell -ExecutionPolicy Bypass -File .\windows\Install-GridImagesSendTo.ps1 
 ```
 
 インストール後、エクスプローラーで画像ファイルまたはフォルダを選択し、右クリックの
-「送る」から「grid-images (クリップボード)」を選ぶ。複数選択にも対応する。フォルダを
+「送る」から「grid-images to clipboard」を選ぶ。複数選択にも対応する。フォルダを
 選択した場合は、そのフォルダ直下の全ファイルを名前順で入力する（サブフォルダ内は対象外）。
 生成したグリッド画像はクリップボードに画像として格納される。一時 PNG は処理の成否に
 かかわらず削除される。

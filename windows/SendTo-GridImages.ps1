@@ -31,12 +31,12 @@ try {
     }
 
     if ($inputFiles.Count -eq 0) {
-        throw '入力ファイルがありません。空ではないフォルダ、または画像ファイルを選択してください。'
+        throw 'No input files were found. Select image files or a non-empty folder.'
     }
 
     & $GridImagesPath '--output' $temporaryPath '--' @inputFiles
     if ($LASTEXITCODE -ne 0) {
-        throw "grid-images が終了コード $LASTEXITCODE で失敗しました。"
+        throw "grid-images failed with exit code $LASTEXITCODE."
     }
 
     Add-Type -AssemblyName System.Drawing
