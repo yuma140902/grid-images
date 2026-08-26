@@ -9,7 +9,7 @@ use clap::Parser;
 
 use grid_images::{GridOptions, create_grid};
 
-/// Crop images to squares and arrange them in a grid.
+/// Crop images to square or 2:1 tiles and arrange them in a grid.
 #[derive(Debug, Parser)]
 #[command(version, about)]
 struct Cli {
