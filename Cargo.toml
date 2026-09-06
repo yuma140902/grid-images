@@ -1,6 +1,6 @@
 [package]
 name = "grid-images"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "Crop images to squares and arrange them in a grid"
 license = "MIT"
